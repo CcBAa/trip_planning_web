@@ -27,6 +27,10 @@
 
 {% if itinerary %}
     <h2>{{ selected_city }} {{ selected_region }} 一日行程</h2>
-    <p>{{ itinerary }}</p>
+    <div class="itinerary">
+        {% for section in itinerary.split("。") if section.strip() %}
+            <p>{{ section }}。</p>
+        {% endfor %}
+    </div>
 {% endif %}
 {% endblock %}
