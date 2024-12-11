@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 import openai
 
 
-
 app = Flask(__name__)
 
 # 設定 OpenAI API 金鑰
