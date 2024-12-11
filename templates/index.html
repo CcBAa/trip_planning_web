@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="POST">
+    <!-- 縣市選單 -->
+    <label for="city">選擇縣市：</label>
+    <select name="city" id="city" onchange="this.form.submit()">
+        <option value="">-- 選擇縣市 --</option>
+        {% for city in cities %}
+        <option value="{{ city }}" {% if city == selected_city %}selected{% endif %}>{{ city }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- 區域選單 -->
+    <label for="region">選擇區域：</label>
+    <select name="region" id="region">
+        <option value="">-- 選擇區域 --</option>
+        {% if selected_city %}
+        {% for region in regions[selected_city] %}
+        <option value="{{ region }}" {% if region == selected_region %}selected{% endif %}>{{ region }}</option>
+        {% endfor %}
+        {% endif %}
+    </select>
+
+    <button type="submit">生成行程</button>
+</form>
+
+{% if itinerary %}
+    <h2>{{ selected_city }} {{ selected_region }} 一日行程</h2>
+    <p>{{ itinerary }}</p>
+{% endif %}
+{% endblock %}
